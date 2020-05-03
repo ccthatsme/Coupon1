@@ -7,6 +7,15 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
 
+    <array name="coupon_category">
+        <item>Select a Category...</item>
+        <item>Sporting Goods</item>
+        <item>Food and Entertainment</item>
+        <item>Home Improvement</item>
+        <item>Self Care</item>
+        <item>Other</item>
+    </array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

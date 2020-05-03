@@ -28,7 +28,6 @@ public class MyCoupons extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private FloatingActionButton fb;
 
 
     public MyCoupons() {
@@ -65,22 +64,26 @@ public class MyCoupons extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        fb = container.findViewById(R.id.floating);
 
-        View onClickListener = new View() {
-            @Override
-            public void onClick(View v) {
-                //Intent intent =
-            }
-        };
-
-        fb.setOnClickListener();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_coupons, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        FloatingActionButton fb = getView().findViewById(R.id.floating);
+
+        View.OnClickListener onClickListener= new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddCoupon.class);
+                startActivity(intent);
+
+            }
+        };
+
+        fb.setOnClickListener((View.OnClickListener) onClickListener);
         super.onViewCreated(view, savedInstanceState);
     }
 }
