@@ -18,22 +18,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:entries="@array/coupon_category"
-        android:layout_weight="2"/>
+        android:layout_weight="1"/>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_weight="6">
     <ImageView
         android:id="@+id/picture"
         android:hint="Add a picture"
-        android:src="@drawable/border"
+        android:padding="5dp"
+        android:background="@layout/imageview_border"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="6"/><!--        android:src="@drawable/border"-->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating"
+            android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="4"/>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal"/>
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:src="@drawable/baseline_photo_black_18dp"/>
 
     </FrameLayout>
 
