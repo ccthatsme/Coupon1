@@ -1,11 +1,14 @@
 package com.myprojects.coupon1;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +27,7 @@ public class MyCoupons extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private Coupon coupon = new Coupon();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -64,6 +68,39 @@ public class MyCoupons extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Bundle intent = getArguments();
+
+        if (intent != null) {
+
+            coupon = intent.getParcelable("coupon_object");
+        }
+
+        //coupon = intent.getExtra("coupon_object");
+
+
+
+
+        //RecyclerView pizzaRecyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_my_coupons, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_my_coupons, container, false);
+
+        RecyclerView recyclerView = view.findViewById(R.id.coupon_recycler);
+
+
+        //this is for the image
+        Bitmap[] couponImage = new Bitmap[1];
+        couponImage[0] = coupon.getCouponImage();
+
+        //this is for description
+        String[] couponDescription = new String[1];
+        couponDescription[0] = coupon.getDescription();
+
+
+        CaptionedImagesAdapter adapter = new CaptionedImagesAdapter(couponImage,couponDescription);
+        recyclerView.setAdapter(adapter);
+        GridLayoutManager grid = new GridLayoutManager(getActivity(), 2);
+        recyclerView.setLayoutManager(grid);
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_coupons, container, false);

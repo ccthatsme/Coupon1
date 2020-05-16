@@ -1,8 +1,10 @@
 package com.myprojects.coupon1;
 
 import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Coupon {
+public class Coupon implements Parcelable {
 
 
     private String category;
@@ -18,6 +20,24 @@ public class Coupon {
     public Coupon() {
         super();
     }
+
+    protected Coupon(Parcel in) {
+        category = in.readString();
+        couponImage = in.readParcelable(Bitmap.class.getClassLoader());
+        description = in.readString();
+    }
+
+    public static final Creator<Coupon> CREATOR = new Creator<Coupon>() {
+        @Override
+        public Coupon createFromParcel(Parcel in) {
+            return new Coupon(in);
+        }
+
+        @Override
+        public Coupon[] newArray(int size) {
+            return new Coupon[size];
+        }
+    };
 
     public String getCategory() {
         return category;
@@ -50,5 +70,17 @@ public class Coupon {
                 ", couponImage=" + couponImage +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(category);
+        dest.writeParcelable(couponImage, flags);
+        dest.writeString(description);
     }
 }
